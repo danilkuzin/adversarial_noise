@@ -71,9 +71,9 @@ def preprocess(
 def reverse_image_int(
     original_image,
     adv_image_float,
-    resize_size = 256, 
+    resize_size = 256,
     crop_size = 224,
-    interpolation = InterpolationMode.BILINEAR, 
+    interpolation = InterpolationMode.BILINEAR,
     antialias = True
 ):
     if isinstance(crop_size, int):
@@ -81,7 +81,7 @@ def reverse_image_int(
     original_image_dtype = original_image.dtype
     _, original_image_height, original_image_width = F.get_dimensions(original_image)
     resized_image = F.resize(original_image, resize_size, interpolation=interpolation, antialias=antialias)
-    
+
     crop_height, crop_width = crop_size
     _, image_height, image_width = F.get_dimensions(resized_image)
 
@@ -91,7 +91,7 @@ def reverse_image_int(
     resized_image[:, crop_top:crop_top+crop_height, crop_left:crop_left+crop_width] = (adv_image_float*255).to(torch.uint8)
 
     return F.resize(resized_image, [original_image_height, original_image_width])
-    
+
 
 
 model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
@@ -152,7 +152,6 @@ print(pred_adv.argmax().item())
 
 print(adv_image_float.max())
 print(adv_image_float.min())
-
 
 
 matplotlib.pyplot.imshow((adv_image_float*255).transpose(0, -1).to("cpu").to(torch.uint8).detach())
