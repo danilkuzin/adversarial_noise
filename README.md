@@ -1,4 +1,6 @@
-# Adversarial
+# Adversarial noise
+This repository contains the adversarial noise generation example. The method is implemented in adversarial_noise.py file, example of running the method is in imagenet_example.py file.
+
 ## Installation
 ### Conda
 used to run MNIST example
