@@ -1,6 +1,9 @@
 # Adversarial noise
 This repository contains the adversarial noise generation example. The method is implemented in adversarial_noise.py file, example of running the method is in imagenet_example.py file.
 
+## Method
+The function receives an image and a target class. We backpropagate the gradients of the cross entropy loss with the target class w.r.t the input image, update it until the prediction matches the target class. A model for classification, its weights and inference transformations are assumed to be known. 
+
 ## Installation
 ### Conda
 used to run MNIST example
